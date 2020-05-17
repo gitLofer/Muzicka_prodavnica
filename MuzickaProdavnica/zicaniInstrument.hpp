@@ -7,7 +7,6 @@ class ZicaniInstrument : public Instrument
 {
 protected:
     int brojZica;
-    ///float debljinaZice; malo ne bih ovo stavljala jer su kod giare svih 6 razlicitih debljina
     float duzinaZice;
     zicaVrsta vrstaZica;
 public:
