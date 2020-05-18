@@ -15,10 +15,10 @@ public:
     Mikser() : Proizvod(){
         vrsta = digitalni;
     }
-    Mikser(mikserVrsta mikserType,DinString na, float c, float o, proizvodjaci pp, DinString b, DinString tim) : Proizvod(na, c, o, pp, b, tim) {
+    Mikser(mikserVrsta mikserType,DinString na, float c, float o, proizvodjaci pp) : Proizvod(na, c, o, pp) {
         vrsta = mikserType;
     }
-    Mikser(const Mikser &m) : Proizvod((Proizvod)&v) {
+    Mikser(const Mikser &m) : Proizvod((Proizvod)m) {
         vrsta = m.vrsta;
     }
 

@@ -6,7 +6,7 @@
 class Kontrabas : GudackiInstrument {
 private:
     kontrabasVrsta vrsta;
-    float velicine;
+    float velicina;
 public:
     Kontrabas() : GudackiInstrument(){
         vrsta = dupliBas;
@@ -16,7 +16,7 @@ public:
         vrsta = kontrabasType;
         velicina = vSize;
     }
-    Kontrabas(const Kontrabas &v) : GudackiInstrument((GudackiInstrument)&v) {
+    Kontrabas(const Kontrabas &v) : GudackiInstrument((GudackiInstrument)v) {
         vrsta = v.vrsta;
         velicina = v.velicina;
     }

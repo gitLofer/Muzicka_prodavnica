@@ -24,7 +24,7 @@ public:
         vrstaZica = typeOfString;
         isElectric = electric;
     }
-    GudackiInstrument(const GudackiInstrument &gi) : Proizvod((Proizvod)&gi) {
+    GudackiInstrument(const GudackiInstrument &gi) : Instrument((Instrument)gi) {
         gudaloTip = gi.gudaloTip;
         brojZica = gi.brojZica;
     }

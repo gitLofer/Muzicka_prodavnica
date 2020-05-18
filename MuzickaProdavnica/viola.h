@@ -6,7 +6,7 @@
 class Viola : GudackiInstrument {
 private:
     violaVrsta vrsta;
-    float velicine;
+    float velicina;
 public:
 public:
     Viola() : GudackiInstrument(){
@@ -17,7 +17,7 @@ public:
         vrsta = violinType;
         velicina = vSize;
     }
-    Viola(const Viola &v) : GudackiInstrument((GudackiInstrument)&v) {
+    Viola(const Viola &v) : GudackiInstrument((GudackiInstrument)v) {
         vrsta = v.vrsta;
         velicina = v.velicina;
     }

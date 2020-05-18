@@ -12,6 +12,12 @@
 #include "kastanjete.hpp"
 #include "metalofon.hpp"
 #include "ukulele.hpp"
+#include "gudackiInstrument.h"
+#include "viola.h"
+#include "violina.h"
+#include "violoncelo.h"
+#include "kontrabas.h"
+#include "mikser.h"
 
 using namespace std;
 

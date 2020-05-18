@@ -6,17 +6,17 @@
 class Violoncelo : GudackiInstrument {
 private:
     violonceloVrsta vrsta;
-    float velicine;
+    float velicina;
 public:
     Violoncelo() : GudackiInstrument(){
         vrsta = carbonFiberVioloncelo;
         velicina = 3/4;
     }
-    Violoncelo(float vSize,violaVrsta violaType,tipGudala tipG, int brojZ, zicaVrsta typeOfString, bool electric,DinString na, float c, float o, proizvodjaci pp, DinString b, DinString tim) : GudackiInstrument(tipG, brojZ, typeOfString, electric, na, c, o, pp, b, tim) {
-        vrsta = violaType;
+    Violoncelo(float vSize,violonceloVrsta violonceloType,tipGudala tipG, int brojZ, zicaVrsta typeOfString, bool electric,DinString na, float c, float o, proizvodjaci pp, DinString b, DinString tim) : GudackiInstrument(tipG, brojZ, typeOfString, electric, na, c, o, pp, b, tim) {
+        vrsta = violonceloType;
         velicina = vSize;
     }
-    Violoncelo(const Violoncelo &v) : GudackiInstrument((GudackiInstrument)&v) {
+    Violoncelo(const Violoncelo &v) : GudackiInstrument((GudackiInstrument)v) {
         vrsta = v.vrsta;
         velicina = v.velicina;
     }
@@ -24,7 +24,7 @@ public:
     violonceloVrsta getViolonceloVrsta () const {return vrsta;}
     float getVelicina () const {return velicina;}
 
-    void setViolonceloVrsta (violaVrsta v) {vrsta = v;}
+    void setViolonceloVrsta (violonceloVrsta v) {vrsta = v;}
     void setVelicina (float f) {velicina = f;}
 };
 

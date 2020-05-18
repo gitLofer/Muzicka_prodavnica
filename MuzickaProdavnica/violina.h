@@ -18,7 +18,7 @@ public:
         vrsta = violinType;
         velicina = vSize;
     }
-    Violina(const Violina &v) : GudackiInstrument((GudackiInstrument)&v) {
+    Violina(const Violina &v) : GudackiInstrument((GudackiInstrument)v) {
         vrsta = v.vrsta;
         velicina = v.velicina;
     }
