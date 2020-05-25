@@ -18,6 +18,8 @@
 #include "violoncelo.h"
 #include "kontrabas.h"
 #include "mikser.h"
+#include "policaZicanihInstrumenata.hpp"
+#include "policaUdarackihInstrumenata.hpp"
 
 using namespace std;
 

@@ -44,6 +44,8 @@
 		<Unit filename="list.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="metalofon.hpp" />
+		<Unit filename="policaUdarackihInstrumenata.hpp" />
+		<Unit filename="policaZicanihInstrumenata.hpp" />
 		<Unit filename="proizvod.hpp" />
 		<Unit filename="udarackiInstrument.hpp" />
 		<Unit filename="ukulele.hpp" />
