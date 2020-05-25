@@ -44,6 +44,10 @@
 		<Unit filename="list.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="metalofon.hpp" />
+		<Unit filename="policaDuvackihInstrumenata.hpp" />
+		<Unit filename="policaGudackihInstrumenata.hpp" />
+		<Unit filename="policaKlaviraIHarmonika.hpp" />
+		<Unit filename="policaOpreme.hpp" />
 		<Unit filename="policaUdarackihInstrumenata.hpp" />
 		<Unit filename="policaZicanihInstrumenata.hpp" />
 		<Unit filename="proizvod.hpp" />

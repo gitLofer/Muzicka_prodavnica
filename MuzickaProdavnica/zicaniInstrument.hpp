@@ -74,7 +74,7 @@ public:
 
     void ispisZicanogInstrumenta()
     {
-        Instrument :: ispisInstrumenta();
+        Instrument :: ispisGudackogInstrumenta();
         cout<<"Broj zica: "<<getBrojZica()<<endl;
         cout<<"Duzina zica: "<<getDuzinaZica()<<" metara"<<endl;
         cout<<"Vrsta zica: "<<getVrstaZica()<<endl;

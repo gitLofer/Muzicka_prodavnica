@@ -26,6 +26,13 @@ public:
 
     void setViolonceloVrsta (violonceloVrsta v) {vrsta = v;}
     void setVelicina (float f) {velicina = f;}
+
+    void ispisVioloncela()
+    {
+        GudackiInstrument::ispisInstrumenta();
+        cout<<"Vrsta violoncela: "<<getViolonceloVrsta()<<endl;
+        cout<<"Velicina: "<<getVelicina()<<endl;
+    }
 };
 
 #endif // VIOLONCELO_H_INCLUDED

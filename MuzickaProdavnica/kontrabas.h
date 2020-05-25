@@ -21,11 +21,18 @@ public:
         velicina = v.velicina;
     }
 
-    kontrabasVrsta getViolonceloVrsta () const {return vrsta;}
+    kontrabasVrsta getKontrabasVrsta () const {return vrsta;}
     float getVelicina () const {return velicina;}
 
     void setViolonceloVrsta (kontrabasVrsta k) {vrsta = k;}
     void setVelicina (float f) {velicina = f;}
+
+    void ispisKontrabasa()
+    {
+        GudackiInstrument::ispisInstrumenta();
+        cout<<"Vrsta kontrabasa: "<<getKontrabasVrsta()<<endl;
+        cout<<"Velicina: "<<getVelicina()<<endl;
+    }
 };
 
 

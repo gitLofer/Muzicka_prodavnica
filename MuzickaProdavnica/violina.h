@@ -28,6 +28,13 @@ public:
 
     void setViolinaVrsta (violinaVrsta v) {vrsta = v;}
     void setVelicina (float f) {velicina = f;}
+
+    void ispisVioline()
+    {
+        GudackiInstrument::ispisInstrumenta();
+        cout<<"Vrsta violine: "<<getViolinaVrsta()<<endl;
+        cout<<"Velicina: "<<getVelicina()<<endl;
+    }
 };
 
 #endif // VIOLINA_H_INCLUDED
