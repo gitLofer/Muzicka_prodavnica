@@ -3,11 +3,6 @@
 
 #include "proizvod.hpp"
 
-/// Note:
-// Nemam blage veze kako da uradim - mikser, zvucna kutija, razglasni sistemi, pojacala, procesori, zvucna kartica, mikseta
-// Glavni razlog je to sto bi bukv copy paste ovo jos jedno 5-6 puta
-// - Petar
-
 class Mikser : Proizvod {
 private:
     mikserVrsta vrsta;
