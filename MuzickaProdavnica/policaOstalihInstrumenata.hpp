@@ -1,27 +1,31 @@
-#ifndef POLICAKLAVIRAIHARMONIKA_HPP_INCLUDED
-#define POLICAKLAVIRAIHARMONIKA_HPP_INCLUDED
+#ifndef POLICAOSTALIHINSTRUMENATA_HPP_INCLUDED
+#define POLICAOSTALIHINSTRUMENATA_HPP_INCLUDED
+
+#include "lista.hpp"
+#include "klavir.hpp"
+#include "harmonika.hpp"
 
 class PolicaOstalihInstrumenata
 {
 private:
-    List<Klavir> listaKlavira;
-    List<Harmonika> listaHarmonika;
+    Lista<Klavir> listaKlavira;
+    Lista<Harmonika> listaHarmonika;
 public:
-    void setListuKlavira(List<Klavir> klav)
+    void setListuKlavira(Lista<Klavir> klav)
     {
         listaKlavira = klav;
     }
-    void setListuHarmonika(List<Harmonika> har)
+    void setListuHarmonika(Lista<Harmonika> har)
     {
         listaHarmonika = har;
     }
 
-    List<Klavir> getlistaKlavira()const{return listaKlavira;}
-    List<Harmonika> getListaHarmonika()const{return listaHarmonika;}
+    Lista<Klavir> getlistaKlavira()const{return listaKlavira;}
+    Lista<Harmonika> getListaHarmonika()const{return listaHarmonika;}
 
     void ispisKlaviraa()
     {
-        if(listaKlavira.size() == 0)
+        if(listaKlavira.velicina() == 0)
         {
             cout<<"-->Nema klavira u prodavnici"<<endl;
         }
@@ -30,16 +34,16 @@ public:
             Klavir k;
             cout<<"Klaviri :"<<endl;
 
-            for (int i = 1; i <= listaKlavira.size(); i++)
+            for (int i = 1; i <= listaKlavira.velicina(); i++)
             {
-                listaKlavira.read(i,k);
+                listaKlavira.izlistaj(i,k);
                 k.ispisKlavira();
             }
         }
     }
     void ispisHarmonika()
     {
-        if(listaHarmonika.size() == 0)
+        if(listaHarmonika.velicina() == 0)
         {
             cout<<"-->Nema harmonika u prodavnici"<<endl;
         }
@@ -48,9 +52,9 @@ public:
             Harmonika h;
             cout<<"Harmonike :"<<endl;
 
-            for (int i = 1; i <= listaHarmonika.size(); i++)
+            for (int i = 1; i <= listaHarmonika.velicina(); i++)
             {
-                listaHarmonika.read(i,h);
+                listaHarmonika.izlistaj(i,h);
                 h.ispisHarmonike();
             }
         }
@@ -62,5 +66,4 @@ public:
         ispisHarmonika();
     }
 };
-
-#endif // POLICAKLAVIRAIHARMONIKA_HPP_INCLUDED
+#endif
