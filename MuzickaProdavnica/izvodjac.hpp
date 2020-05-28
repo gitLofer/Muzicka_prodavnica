@@ -14,14 +14,14 @@ public:
     {
         ime = "Nije uneto";
         vrsta = solo;
-        godineNaSceni = 5;
+        godineNaSceni = 0;
     }
 
-    Izvodjac(string IME, izvodjacVrsta VRSTA, int GODINE)
+    Izvodjac(string IME, izvodjacVrsta VRSTA, int GOD)
     {
         ime = IME;
         vrsta = VRSTA;
-        godineNaSceni = GODINE;
+        godineNaSceni = GOD;
     }
 
     Izvodjac(const Izvodjac &i)
@@ -31,38 +31,53 @@ public:
         godineNaSceni = i.godineNaSceni;
     }
 
+    void setIme(string IME) {ime = IME;}
+    void setVrsta()
+    {
+        int br;
+        cout<<"Vrsta izvodjaca[1-Solo/2-Grupa]: ";
+        cin>>br;
+        switch(br)
+        {
+        case 1:
+            vrsta = solo;
+            break;
+        case 2:
+            vrsta = grupa;
+            break;
+        }
+    }
+    void setGodineNaSceni(int GOD) {godineNaSceni = GOD;}
+
     string getIme()const {return ime;}
     string getVrsta()const
     {
         switch(vrsta)
         {
-        case grupa:
-            return "Grupa";
-            break;
         case solo:
             return "Solo";
+            break;
+        case grupa:
+            return "Grupa";
             break;
         }
     }
     int getGodineNaSceni()const {return godineNaSceni;}
 
-    void setIme(string IME) {ime = IME;}
-    void setGodineNaSceni(int GODINE) {godineNaSceni = GODINE;}
-    void setVrsta()
+    void ispisiIzvodjaca()
     {
-        int br;
-        cout<<"Unesite broj [1-Grupa/2-Solo]: "<<endl;
-        cin>>br;
+        cout<<"Ime: "<<getIme()<<endl;
+        cout<<"Vrsta: "<<getVrsta()<<endl;
+        cout<<"Godine na sceni: "<<getGodineNaSceni()<<endl;
+    }
 
-        switch(br)
-        {
-        case 1:
-            vrsta = grupa;
-            break;
-        case 2:
-            vrsta = solo;
-            break;
-        }
+    void unesiIzvodjaca()
+    {
+        cout<<"Ime: ";
+        cin>>ime;
+        setVrsta();
+        cout<<"Godine na sceni: ";
+        cin>>godineNaSceni;
     }
 };
 
