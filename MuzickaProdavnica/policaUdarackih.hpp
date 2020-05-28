@@ -1,72 +1,78 @@
-#ifndef POLICAUDARACKIHINSTRUMENATA_HPP_INCLUDED
-#define POLICAUDARACKIHINSTRUMENATA_HPP_INCLUDED
-#include "list.hpp"
+#ifndef POLICAUDARACKIH_HPP_INCLUDED
+#define POLICAUDARACKIH_HPP_INCLUDED
+
+#include "lista.hpp"
+#include "bubanj.hpp"
+#include "cinele.hpp"
+#include "daire.hpp"
+#include "kastanjete.hpp"
+#inlcude "metalofon.hpp"
 
 class PolicaUdarackih
 {
 private:
-    List<Bubanj> listaBubnjeva;
-    List<Cinele> listaCinela;
-    List<Daire> listaDaira;
-    List<Kastanjete> listaKastanjeta;
-    List<Metalofon> listaMetalofona;
+    Lista<Bubanj> listaBubnjeva;
+    Lista<Cinele> listaCinela;
+    Lista<Daire> listaDaira;
+    Lista<Kastanjete> listaKastanjeta;
+    Lista<Metalofon> listaMetalofona;
 public:
-    void setListuBubnjeva(List<Bubanj> bb)
+    void setListuBubnjeva(Lista<Bubanj> bb)
     {
         listaBubnjeva = bb;
     }
-    void setListuCinela(List<Cinele> cc)
+    void setListuCinela(Lista<Cinele> cc)
     {
         listaCinela = cc;
     }
-    void setListuDaira(List<Daire> dd)
+    void setListuDaira(Lista<Daire> dd)
     {
         listaDaira = dd;
     }
-    void setListuKastanjeta(List<Kastanjete> kk)
+    void setListuKastanjeta(Lista<Kastanjete> kk)
     {
         listaKastanjeta = kk;
     }
-    void setListaMetalofona(List<Metalofon> mm)
+    void setListaMetalofona(Lista<Metalofon> mm)
     {
         listaMetalofona = mm;
     }
 
-    List<Bubanj> getListuBubnjeva()const{return listaBubnjeva;}
-    List<Cinele> getListuCinela()const{return listaCinela;}
-    List<Daire> getListuDaira()const{return listaDaira;}
-    List<Kastanjete> getListuKastanjeta()const{return listaKastanjeta;}
-    List<Metalofon> getListuMetalofona()const{return listaMetalofona;}
+    Lista<Bubanj> getListuBubnjeva()const{return listaBubnjeva;}
+    Lista<Cinele> getListuCinela()const{return listaCinela;}
+    Lista<Daire> getListuDaira()const{return listaDaira;}
+    Lista<Kastanjete> getListuKastanjeta()const{return listaKastanjeta;}
+    Lista<Metalofon> getListuMetalofona()const{return listaMetalofona;}
 
     PolicaUdarackih& operator+=(Bubanj& bub)
     {
-        listaBubnjeva.add(listaBubnjeva.size()+1, bub);
+        listaBubnjeva.dodajElement(listaBubnjeva.velicina()+1, bub);
         return *this;
     }
     PolicaUdarackih& operator+=(Cinele& cine)
     {
-        listaCinela.add(listaCinela.size()+1, cine);
+        listaCinela.dodajElement(listaCinela.velicina()+1, cine);
         return *this;
     }
     PolicaUdarackih& operator+=(Daire& dar)
     {
-        listaDaira.add(listaDaira.size()+1, dar);
+        listaDaira.dodajElement(listaDaira.velicina()+1, dar);
         return *this;
     }
     PolicaUdarackih& operator+=(Kastanjete& kst)
     {
-        listaKastanjeta.add(listaKastanjeta.size()+1, kst);
+        listaKastanjeta.dodajElement(listaKastanjeta.velicina()+1, kst);
         return *this;
     }
     PolicaUdarackih& operator+=(Metalofon& met)
     {
-        listaMetalofona.add(listaMetalofona.size()+1, met);
+        listaMetalofona.dodajElement(listaMetalofona.velicina()+1, met);
         return *this;
     }
 
     void ispisBubnjeva()
     {
-        if(listaBubnjeva.size() == 0)
+        if(listaBubnjeva.velicina() == 0)
         {
             cout<<"-->Nema bubnjeva u prodavnici"<<endl;
         }
@@ -75,16 +81,16 @@ public:
             Bubanj b;
             cout<<"Bubnjevi :"<<endl;
 
-            for (int i = 1; i <= listaBubnjeva.size(); i++)
+            for (int i = 1; i <= listaBubnjeva.velicina(); i++)
             {
-                listaBubnjeva.read(i, b);
+                listaBubnjeva.izlistaj(i, b);
                 b.ispisBubnja();
             }
         }
     }
     void ispisCinela()
     {
-        if(listaCinela.size() == 0)
+        if(listaCinela.velicina() == 0)
         {
             cout<<"-->Nema cinela u prodavnici"<<endl;
         }
@@ -93,16 +99,16 @@ public:
             Cinele c;
             cout<<"Cinele :"<<endl;
 
-            for (int i = 1; i <= listaCinela.size(); i++)
+            for (int i = 1; i <= listaCinela.velicina(); i++)
             {
-                listaCinela.read(i, c);
+                listaCinela.izlistaj(i, c);
                 c.ispisCinela();
             }
         }
     }
     void ispisDaira()
     {
-        if(listaDaira.size() == 0)
+        if(listaDaira.velicina() == 0)
         {
             cout<<"-->Nema daira u prodavnici"<<endl;
         }
@@ -111,16 +117,16 @@ public:
             Daire d;
             cout<<"Daire :"<<endl;
 
-            for (int i = 1; i <= listaDaira.size(); i++)
+            for (int i = 1; i <= listaDaira.velicina(); i++)
             {
-                listaDaira.read(i, d);
+                listaDaira.izlistaj(i, d);
                 d.ispisDaira();
             }
         }
     }
     void ispisKastanjeta()
     {
-        if(listaKastanjeta.size() == 0)
+        if(listaKastanjeta.velicina() == 0)
         {
             cout<<"-->Nema kastanjeta u prodavnici"<<endl;
         }
@@ -129,16 +135,16 @@ public:
             Kastanjete k;
             cout<<"Kastanjete :"<<endl;
 
-            for (int i = 1; i <= listaKastanjeta.size(); i++)
+            for (int i = 1; i <= listaKastanjeta.velicina(); i++)
             {
-                listaKastanjeta.read(i, k);
+                listaKastanjeta.izlistaj(i, k);
                 k.ispisKastanjeta();
             }
         }
     }
     void ispisMetalofonaa()
     {
-        if(listaMetalofona.size() == 0)
+        if(listaMetalofona.velicina() == 0)
         {
             cout<<"-->Nema metalofona u prodavnici"<<endl;
         }
@@ -147,9 +153,9 @@ public:
             Metalofon m;
             cout<<"Metalofoni :"<<endl;
 
-            for (int i = 1; i <= listaMetalofona.size(); i++)
+            for (int i = 1; i <= listaMetalofona.velicina(); i++)
             {
-                listaMetalofona.read(i, m);
+                listaMetalofona.izlistaj(i, m);
                 m.ispisMetalofona();
             }
         }
@@ -164,5 +170,4 @@ public:
         ispisMetalofonaa();
     }
 };
-
-#endif // POLICAUDARACKIHINSTRUMENATA_HPP_INCLUDED
+#endif
