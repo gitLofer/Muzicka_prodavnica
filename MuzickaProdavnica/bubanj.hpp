@@ -1,6 +1,9 @@
 #ifndef BUBANJ_HPP_INCLUDED
 #define BUBANJ_HPP_INCLUDED
 
+#include "udarackiInstrument.hpp"
+enum bubanjVrsta {kongo, bongo, djambe, tabla, timpani, pahu};
+
 class Bubanj : public UdarackiInstrument
 {
 private:
@@ -9,28 +12,26 @@ private:
     int brojSlojeva;
     bubanjVrsta vrsta;
 public:
+
+    int bubanjID;
+
     Bubanj()
     {
-        naziv = "Bubanj";
         cena = 2500.00;
         ocena = 9.0;
         proizvodjac = yamaha;
-        boja = "BRAON";
-        timbre = "round";
         ton = odredjena;
         glasan = true;
         rezonantan = false;
         brojSlojeva = 2;
         vrsta = bongo;
     }
-    Bubanj(DinString naz, float cc, float oo, proizvodjaci pp, DinString bb, DinString tt, udarackiVisinaTona visina,bool glasnoca, bool rez, int brs, bubanjVrsta bub)
+    Bubanj(int idd,float cc, float oo, proizvodjaci pp, udarackiVisinaTona visina,bool glasnoca, bool rez, int brs, bubanjVrsta bub)
     {
-        naziv = naz;
+        bubanjID = idd;
         cena = cc;
         ocena = oo;
         proizvodjac = pp;
-        boja = bb;
-        timbre = tt;
         ton = visina;
         glasan = glasnoca;
         rezonantan = rez;
@@ -39,12 +40,10 @@ public:
     }
     Bubanj(const Bubanj &b)
     {
-        naziv = b.naziv;
+        bubanjID = b.bubanjID;
         cena = b.cena;
         ocena = b.ocena;
         proizvodjac = b.proizvodjac;
-        boja = b.boja;
-        timbre = b.timbre;
         ton = b.ton;
         glasan = b.glasan;
         rezonantan = b.rezonantan;
@@ -107,15 +106,155 @@ public:
             break;
         }
     }
+    int getBubanjID()const;
 
     void ispisBubnja()
     {
-        UdarackiInstrument :: ispisUdarackogInstrumenta();
+        cout<<"ID: "<<getBubanjID()<<endl;
+        ispisUdarackogInstrumenta();
         cout<<"Glasnost bubnja: "<<getGlasnoca()<<endl;
         cout<<"Rezonantnost bubnja: "<<getRezonantnost()<<endl;
         cout<<"Broj slojeva: "<<getBrojSlojeva()<<endl;
         cout<<"Vrsta bubnjeva: "<<getVrstaBubnja()<<endl;
     }
-};
 
-#endif // BUBANJ_HPP_INCLUDED
+    void unosBubnja()
+    {
+        int br;
+        cout<<"ID: ";
+        cin>>bubanjID;
+        fflush(stdin);
+        unosUdarackogInstrumenta();
+        cout<<"Glasnoca bubnja: ";
+        cin>>glasan;
+        fflush(stdin);
+        cout<<"Rezonantnost bubnja: ";
+        cin>>rezonantan;
+        fflush(stdin);
+        cout<<"Broj slojeva: ";
+        cin>>brojSlojeva;
+        fflush(stdin);
+        cout<<"Vrsta bubnja[1-Bongo/2-Djambe/3-Kongo/4-Pahu/5-Tabla/6-Timpani]: ";
+        cin>>br;
+        fflush(stdin);
+        switch(br)
+        {
+        case 1:
+            vrsta = bongo;
+            break;
+        case 2:
+            vrsta = djambe;
+            break;
+        case 3:
+            vrsta = kongo;
+            break;
+        case 4:
+            vrsta = pahu;
+            break;
+        case 5:
+            vrsta = tabla;
+            break;
+        case 6:
+            vrsta = timpani;
+            break;
+        }
+    }
+
+};
+int Bubanj::getBubanjID()const {return bubanjID;}
+
+void dodajUFajlBubanj()
+{
+	Bubanj b;
+	ofstream outFile;
+	outFile.open("BUBANJ.dat",ios::binary|ios::app);
+	b.unosBubnja();
+	outFile.write(reinterpret_cast<char *> (&b), sizeof(Bubanj));
+	outFile.close();
+    	cout<<"\n\nBubanj dodat u fajl!";
+	cin.ignore();
+	cin.get();
+}
+void ispisiFajlBubanj()
+{
+	Bubanj b;
+	ifstream inFile;
+	inFile.open("BUBANJ.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"Greska! Ne moze se otvoriti fajl!";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+	cout<<"\n\n\n\t\tSVI BUBNJEVI U FAJLU\n\n";
+	while(inFile.read(reinterpret_cast<char *> (&b), sizeof(Bubanj)))
+	{
+		b.ispisBubnja();
+		cout<<"\n\n************************************\n";
+	}
+	inFile.close();
+	cin.ignore();
+	cin.get();
+}
+
+void potraziUFajluBubanj(int n)
+{
+	Bubanj b;
+	ifstream inFile;
+	inFile.open("BUBANJ.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"Greska! Ne moze se otvoriti fajl!";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+	bool flag=false;
+	while(inFile.read(reinterpret_cast<char *> (&b), sizeof(Bubanj)))
+	{
+		if(b.getBubanjID()==n)
+		{
+	  		 b.ispisBubnja();
+			 flag=true;
+		}
+	}
+	inFile.close();
+	if(flag==false)
+		cout<<"\n\nBubanj ne postoji!"<<endl;
+	cin.ignore();
+	cin.get();
+}
+
+void obrisiUFajluBubanj(int n)
+{
+	Bubanj b;
+	ifstream inFile;
+	inFile.open("BUBANJ.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"Greska! Ne moze se otvoriti fajl!";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+	ofstream outFile;
+	outFile.open("TempBubanj.dat",ios::out);
+	inFile.seekg(0,ios::beg);
+	while(inFile.read(reinterpret_cast<char *> (&b), sizeof(Bubanj)))
+	{
+		if(b.getBubanjID()!=n)
+		{
+			outFile.write(reinterpret_cast<char *> (&b), sizeof(Bubanj));
+		}
+	}
+	outFile.close();
+	inFile.close();
+	remove("BUBANJ.dat");
+	rename("TempBubanj.dat","BUBANJ.dat");
+	cout<<"\n\n\tBubanj obrisan!";
+	cin.ignore();
+	cin.get();
+}
+
+#endif
