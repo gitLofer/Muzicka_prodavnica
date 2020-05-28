@@ -2,6 +2,7 @@
 #define ZICANIINSTRUMENT_HPP_INCLUDED
 
 #include "instrument.hpp"
+enum zicaVrsta {nikl, celik, najlon};
 
 class ZicaniInstrument : public Instrument
 {
@@ -12,36 +13,27 @@ protected:
 public:
     ZicaniInstrument()
     {
-        naziv = "Gitara";
         cena = 7000.00;
         ocena = 6.9;
         proizvodjac = taylor;
-        boja = "CRNA";
-        timbre = "sharp";
         brojZica = 6;
         duzinaZice = 1.5;
         vrstaZica = nikl;
     }
-    ZicaniInstrument(DinString naz, float cc, float oo, proizvodjaci pp, DinString bb, DinString tt, int broj, float duzina, zicaVrsta vrs)
+    ZicaniInstrument(float cc, float oo, proizvodjaci pp, int broj, float duzina, zicaVrsta vrs)
     {
-        naziv = naz;
         cena = cc;
         ocena = oo;
         proizvodjac = pp;
-        boja = bb;
-        timbre = tt;
         brojZica = broj;
         duzinaZice = duzina;
         vrstaZica = vrs;
     }
     ZicaniInstrument(const ZicaniInstrument &z)
     {
-        naziv = z.naziv;
         cena = z.cena;
         ocena = z.ocena;
         proizvodjac = z.proizvodjac;
-        boja = z.boja;
-        timbre = z.timbre;
         brojZica = z.brojZica;
         duzinaZice = z.duzinaZice;
         vrstaZica = z.vrstaZica;
@@ -74,13 +66,36 @@ public:
 
     void ispisZicanogInstrumenta()
     {
-        Instrument :: ispisGudackogInstrumenta();
+        ispisInstrumenta();
         cout<<"Broj zica: "<<getBrojZica()<<endl;
         cout<<"Duzina zica: "<<getDuzinaZica()<<" metara"<<endl;
         cout<<"Vrsta zica: "<<getVrstaZica()<<endl;
 
     }
+
+    void unosZicanogInstrumenta()
+    {
+        int br;
+        unosInstrumenta();
+        cout<<"Broj zica: ";
+        cin>>brojZica;
+        cout<<"Duzina zica: ";
+        cin>>duzinaZice;
+        cout<<"Vrsta zice[1-Celik/2-Najlon/3-Nikl]: ";
+        cin>>br;
+        switch(br)
+        {
+        case 1:
+            vrstaZica = celik;
+            break;
+        case 2:
+            vrstaZica = najlon;
+            break;
+        case 3:
+            vrstaZica = nikl;
+            break;
+        }
+    }
 };
 
-
-#endif // ZICANIINSTRUMENT_HPP_INCLUDED
+#endif
