@@ -1,5 +1,5 @@
-#ifndef GUDACKIINSTRUMENT_H_INCLUDED
-#define GUDACKIINSTRUMENT_H_INCLUDED
+#ifndef GUDACKIINSTRUMENT_HPP_INCLUDED
+#define GUDACKIINSTRUMENT_HPP_INCLUDED
 
 #include "instrument.hpp"
 
@@ -69,4 +69,4 @@ public:
      }
 };
 
-#endif // GUDACKIINSTRUMENT_H_INCLUDED
+#endif 
