@@ -1,4 +1,25 @@
-#include <iostream>
+#include<iostream>
+#include<fstream>
+#include<cstdlib>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <windows.h>
+#include <conio.h>
+#include<cctype>
+#include<iomanip>
+#include <string>
+#include <cstring>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::fstream;
+using std::ofstream;
+using std::ifstream;
+using std::ios;
+
+using namespace std;
+
 
 #include "proizvod.hpp"
 #include "instrument.hpp"
