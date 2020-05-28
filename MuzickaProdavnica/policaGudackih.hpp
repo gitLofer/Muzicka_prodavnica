@@ -1,60 +1,63 @@
-#ifndef POLICAGUDACKIHINSTRUMENATA_HPP_INCLUDED
-#define POLICAGUDACKIHINSTRUMENATA_HPP_INCLUDED
+#ifndef POLICAGUDACKIH_HPP_INCLUDED
+#define POLICAGUDACKIH_HPP_INCLUDED
+
+#include "lista.hpp"
+#include "violina.hpp"
+#include "violoncelo.hpp"
+#include "viola.hpp"
+#include "kontrabas.hpp"
 
 class PolicaGudackih
 {
 private:
-    List<Violoncelo> listaVioloncela;
-    List<Volina> listaViolina;
-    List<Viola> listaViola;
-    List<Kontrabas> listaKontrabasa;
+    Lista<Violoncelo> listaVioloncela;
+    Lista<Violina> listaViolina;
+    Lista<Viola> listaViola;
+    Lista<Kontrabas> listaKontrabasa;
 public:
-    void setListuVioloncela(List<Violoncelo> vio)
+    void setListuVioloncela(Lista<Violoncelo> vio)
     {
         listaVioloncela = vio;
     }
-    void setListuViolina(List<Violina> vil)
+    void setListuViolina(Lista<Violina> vil)
     {
         listaViolina = vil;
     }
-    void setListuViola(List<Viola> vi)
-    {
-        listaViola = vi;
-    }
-    void setListuKontrabasova(List<Kontrabas> komb)
+
+    void setListuKontrabasa(Lista<Kontrabas> komb)
     {
         listaKontrabasa = komb;
     }
 
-    List<Violoncelo> getlistaVioloncela()const{return listaVioloncela;}
-    List<Volina> getlistaViolina()const{return listaViolina;}
-    List<Viola> getlistaViola()const{return listaViola;}
-    List<Kontrabas> getlistaKontrabasa()const{return listaKontrabasa;}
+    Lista<Violoncelo> getlistaVioloncela()const{return listaVioloncela;}
+    Lista<Violina> getlistaViolina()const{return listaViolina;}
+    Lista<Viola> getlistaViola()const{return listaViola;}
+    Lista<Kontrabas> getlistaKontrabasa()const{return listaKontrabasa;}
 
     PolicaGudackih& operator+=(Violoncelo& viol)
     {
-        listaVioloncela.add(listaVioloncela.size()+1, viol);
+        listaVioloncela.dodajElement(listaVioloncela.velicina()+1, viol);
         return *this;
     }
     PolicaGudackih& operator+=(Violina& vi)
     {
-        listaViolina.add(listaViolina.size()+1, vi);
+        listaViolina.dodajElement(listaViolina.velicina()+1, vi);
         return *this;
     }
     PolicaGudackih& operator+=(Viola& vo)
     {
-        listaViola.add(listaViola.size()+1, vo);
+        listaViola.dodajElement(listaViola.velicina()+1, vo);
         return *this;
     }
     PolicaGudackih& operator+=(Kontrabas& kon)
     {
-        listaKontrabasa.add(listaKontrabasa.size()+1, kon);
+        listaKontrabasa.dodajElement(listaKontrabasa.velicina()+1, kon);
         return *this;
     }
 
     void ispisVioloncela()
     {
-        if(listaVioloncela.size() == 0)
+        if(listaVioloncela.velicina() == 0)
         {
             cout<<"-->Nema violoncela u prodavnici"<<endl;
         }
@@ -63,16 +66,16 @@ public:
             Violoncelo vo;
             cout<<"Violoncela :"<<endl;
 
-            for (int i = 1; i <= listaVioloncela.size(); i++)
+            for (int i = 1; i <= listaVioloncela.velicina(); i++)
             {
-                listaVioloncela.read(i, vo);
+                listaVioloncela.izlistaj(i, vo);
                 vo.ispisVioloncela();
             }
         }
     }
     void ispisViolina()
     {
-        if(listaViolina.size() == 0)
+        if(listaViolina.velicina() == 0)
         {
             cout<<"-->Nema violina u prodavnici"<<endl;
         }
@@ -81,16 +84,16 @@ public:
             Violina vi;
             cout<<"Violine :"<<endl;
 
-            for (int i = 1; i <= listaViolina.size(); i++)
+            for (int i = 1; i <= listaViolina.velicina(); i++)
             {
-                listaViolina.read(i, vi);
+                listaViolina.izlistaj(i, vi);
                 vi.ispisVioline();
             }
         }
     }
     void ispisViola()
     {
-        if(listaViola.size() == 0)
+        if(listaViola.velicina() == 0)
         {
             cout<<"-->Nema viola u prodavnici"<<endl;
         }
@@ -99,16 +102,16 @@ public:
             Viola v;
             cout<<"Viole :"<<endl;
 
-            for (int i = 1; i <= listaViola.size(); i++)
+            for (int i = 1; i <= listaViola.velicina(); i++)
             {
-                listaViola.read(i, v);
+                listaViola.izlistaj(i, v);
                 v.ispisViole();
             }
         }
     }
     void ispisKontrabasova()
     {
-        if(listaKontrabasa.size() == 0)
+        if(listaKontrabasa.velicina() == 0)
         {
             cout<<"-->Nema kontrabasa u prodavnici"<<endl;
         }
@@ -117,9 +120,9 @@ public:
             Kontrabas kb;
             cout<<"Kontrabasi :"<<endl;
 
-            for (int i = 1; i <= listaKontrabasa.size(); i++)
+            for (int i = 1; i <= listaKontrabasa.velicina(); i++)
             {
-                listaKontrabasa.read(i, kb);
+                listaKontrabasa.izlistaj(i, kb);
                 kb.ispisKontrabasa();
             }
         }
@@ -134,5 +137,4 @@ public:
     }
 
 };
-
-#endif // POLICAGUDACKIHINSTRUMENATA_HPP_INCLUDED
+#endif
