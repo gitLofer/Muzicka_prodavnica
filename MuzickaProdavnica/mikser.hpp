@@ -1,5 +1,5 @@
-#ifndef MIKSER_H_INCLUDED
-#define MIKSER_H_INCLUDED
+#ifndef MIKSER_HPP_INCLUDED
+#define MIKSER_HPP_INCLUDED
 
 #include "proizvod.hpp"
 
@@ -171,4 +171,4 @@ void obrisiUFajluMikser(int n)
 	cin.ignore();
 	cin.get();
 }
-#endif // MIKSER_H_INCLUDED
+#endif 
