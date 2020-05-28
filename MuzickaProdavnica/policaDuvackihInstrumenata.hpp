@@ -1,31 +1,33 @@
 #ifndef POLICADUVACKIHINSTRUMENATA_HPP_INCLUDED
 #define POLICADUVACKIHINSTRUMENATA_HPP_INCLUDED
 
+#include "lista.hpp"
+
 class PolicaDuvackih
 {
 private:
-    List<Tuba> listaTubi;
-    List<Truba> listaTrubi;
-    List<Trombon> listaTrombona;
-    List<Saksofon> listaSaksofona;
-    List<Oboa> listaOboa;
-    List<Klarinet> listaKlarineta;
-    List<Horna> listaHorni;
-    List<Flauta> listaFlauti;
+    Lista<Tuba> listaTubi;
+    Lista<Truba> listaTrubi;
+    Lista<Trombon> listaTrombona;
+    Lista<Saksofon> listaSaksofona;
+    Lista<Oboa> listaOboa;
+    Lista<Klarinet> listaKlarineta;
+    Lista<Horna> listaHorni;
+    Lista<Flauta> listaFlauti;
 public:
-    void setListaTubi(List<Tuba> tb)
+    void setListaTubi(Lista<Tuba> tb)
     {
         listaTubi = tb;
     }
-    void setListaTruba(List<Truba> trub)
+    void setListaTruba(Lista<Truba> trub)
     {
         listaTrubi = trub;
     }
-    void setListaTrombona(List<Trombon> trom)
+    void setListaTrombona(Lista<Trombon> trom)
     {
         listaTrombona = trom;
     }
-    void setListaSaksofona(List<Saksofon> saks)
+    void setListaSaksofona(Lista<Saksofon> saks)
     {
         listaSaksofona = saks;
     }
@@ -33,72 +35,66 @@ public:
     {
         listaOboa = ob;
     }
-    void setListaKlarineta(List<Klarinet> klr)
+    void setListaKlarineta(Lista<Klarinet> klr)
     {
         listaKlarineta = klr;
     }
-    void setListaHorni(List<Horna> horn)
+    void setListaHorni(Lista<Horna> horn)
     {
         listaHorni = horn;
     }
-    void setListaFlauta(List<Flauta> fla)
+    void setListaFlauta(Lista<Flauta> fla)
     {
         listaFlauti = fla;
     }
 
-    List<Tuba> getlistaTubi()const{return listaTubi;}
-    List<Truba> getlistaTrubi()const{return listaTrubi;}
-    List<Trombon> getlistaTrombona()const{return listaTrombona;}
-    List<Saksofon> getlistaSaksofona()const{return listaSaksofona;}
-    List<Oboa> getlistaOboa()const{return listaOboa;}
-    List<Klarinet> getlistaKlarineta()const{return listaKlarineta;}
-    List<Horna> getlistaHorni()const{return listaHorni;}
-    List<Flauta> getlistaFlauti()const{return listaFlauti;}
+    Lista<Tuba> getlistaTubi()const{return listaTubi;}
+    Lista<Truba> getlistaTrubi()const{return listaTrubi;}
+    Lista<Trombon> getlistaTrombona()const{return listaTrombona;}
+    Lista<Saksofon> getlistaSaksofona()const{return listaSaksofona;}
+    Lista<Oboa> getlistaOboa()const{return listaOboa;}
+    Lista<Klarinet> getlistaKlarineta()const{return listaKlarineta;}
+    Lista<Flauta> getlistaFlauti()const{return listaFlauti;}
 
     PolicaDuvackih& operator+=(Tuba& tub)
     {
-        listaTubi.add(listaTubi.size()+1, tub);
+        listaTubi.dodajElement(listaTubi.velicina()+1, tub);
         return *this;
     }
     PolicaDuvackih& operator+=(Truba& trub)
     {
-        listaTrubi.add(listaTrubi.size()+1, trub);
+        listaTrubi.dodajElement(listaTrubi.velicina()+1, trub);
         return *this;
     }
     PolicaDuvackih& operator+=(Trombon& trom)
     {
-        listaTrombona.add(listaTrombona.size()+1, trom);
-        return *this;
-    }
-    PolicaDuvackih& operator+=(Saksofon& sak)
-    {
-        listaSaksofona.add(listaSaksofona.size()+1, sak);
+        listaTrombona.dodajElement(listaTrombona.velicina()+1, trom);
         return *this;
     }
     PolicaDuvackih& operator+=(Oboa& obo)
     {
-        listaOboa.add(listaOboa.size()+1, obo);
+        listaOboa.dodajElement(listaOboa.velicina()+1, obo);
         return *this;
     }
     PolicaDuvackih& operator+=(Klarinet& klar)
     {
-        listaKlarineta.add(listaKlarineta.size()+1, klar);
+        listaKlarineta.dodajElement(listaKlarineta.velicina()+1, klar);
         return *this;
     }
     PolicaDuvackih& operator+=(Horna& hor)
     {
-        listaHorni.add(listaHorni.size()+1, hor);
+        listaHorni.dodajElement(listaHorni.velicina()+1, hor);
         return *this;
     }
     PolicaDuvackih& operator+=(Flauta& flat)
     {
-        listaFlauti.add(listaFlauti.size()+1, flat);
+        listaFlauti.dodajElement(listaFlauti.velicina()+1, flat);
         return *this;
     }
 
     void ispisTubi()
     {
-        if(listaTubi.size() == 0)
+        if(listaTubi.velicina() == 0)
         {
             cout<<"-->Nema tubi u prodavnici"<<endl;
         }
@@ -107,16 +103,16 @@ public:
             Tuba t;
             cout<<"Tube :"<<endl;
 
-            for (int i = 1; i <= listaTubi.size(); i++)
+            for (int i = 1; i <= listaTubi.velicina(); i++)
             {
-                listaTubi.read(i, t);
+                listaTubi.izlistaj(i, t);
                 t.ispisTube();
             }
         }
     }
     void ispisTrubaa()
     {
-        if(listaTrubi.size() == 0)
+        if(listaTrubi.velicina() == 0)
         {
             cout<<"-->Nema trubi u prodavnici"<<endl;
         }
@@ -125,16 +121,16 @@ public:
             Truba r;
             cout<<"Trube :"<<endl;
 
-            for (int i = 1; i <= listaTrubi.size(); i++)
+            for (int i = 1; i <= listaTrubi.velicina(); i++)
             {
-                listaTrubi.read(i, r);
+                listaTrubi.izlistaj(i, r);
                 r.ispisTruba();
             }
         }
     }
     void ispisTrombonaa()
     {
-        if(listaTrombona.size() == 0)
+        if(listaTrombona.velicina() == 0)
         {
             cout<<"-->Nema trombona u prodavnici"<<endl;
         }
@@ -143,16 +139,16 @@ public:
             Trombon rb;
             cout<<"Tromboni :"<<endl;
 
-            for (int i = 1; i <= listaTrombona.size(); i++)
+            for (int i = 1; i <= listaTrombona.velicina(); i++)
             {
-                listaTrombona.read(i, rb);
+                listaTrombona.izlistaj(i, rb);
                 rb.ispisTrombona();
             }
         }
     }
     void ispisSakdofonaa()
     {
-        if(listaSaksofona.size() == 0)
+        if(listaSaksofona.velicina() == 0)
         {
             cout<<"-->Nema saksofona u prodavnici"<<endl;
         }
@@ -161,16 +157,16 @@ public:
             Saksofon s;
             cout<<"Saksofoni :"<<endl;
 
-            for (int i = 1; i <= listaSaksofona.size(); i++)
+            for (int i = 1; i <= listaSaksofona.velicina(); i++)
             {
-                listaSaksofona.read(i, s);
+                listaSaksofona.izlistaj(i, s);
                 s.ispisSaksofona();
             }
         }
     }
     void ispisOboa()
     {
-        if(listaOboa.size() == 0)
+       if(listaOboa.velicina() == 0)
         {
             cout<<"-->Nema oboa u prodavnici"<<endl;
         }
@@ -179,16 +175,16 @@ public:
             Oboa o;
             cout<<"Oboe :"<<endl;
 
-            for (int i = 1; i <= listaOboa.size(); i++)
+            for (int i = 1; i <= listaOboa.velicina(); i++)
             {
-                listaOboa.read(i, o);
                 o.ispisOboe();
             }
         }
     }
+
     void ispisKlarinetosa()
     {
-        if(listaKlarineta.size() == 0)
+        if(listaKlarineta.velicina() == 0)
         {
             cout<<"-->Nema klarineta u prodavnici"<<endl;
         }
@@ -197,16 +193,16 @@ public:
             Klarinet kk;
             cout<<"Klarineti :"<<endl;
 
-            for (int i = 1; i <= listaKlarineta.size(); i++)
+            for (int i = 1; i <= listaKlarineta.velicina(); i++)
             {
-                listaKlarineta.read(i, kk);
+                listaKlarineta.izlistaj(i, kk);
                 kk.ispisKlarineta();
             }
         }
     }
     void ispisHorni()
     {
-        if(listaHorni.size() == 0)
+        if(listaHorni.velicina() == 0)
         {
             cout<<"-->Nema horni u prodavnici"<<endl;
         }
@@ -215,16 +211,16 @@ public:
             Horna h;
             cout<<"Horne :"<<endl;
 
-            for (int i = 1; i <= listaHorni.size(); i++)
+            for (int i = 1; i <= listaHorni.velicina(); i++)
             {
-                listaHorni.read(i, h);
+                listaHorni.izlistaj(i, h);
                 h.ispisHorne();
             }
         }
     }
     void ispisFlauta()
     {
-        if(listaFlauti.size() == 0)
+        if(listaFlauti.velicina() == 0)
         {
             cout<<"-->Nema flauta u prodavnici"<<endl;
         }
@@ -233,9 +229,9 @@ public:
             Flauta f;
             cout<<"Flaute :"<<endl;
 
-            for (int i = 1; i <= listaFlauti.size(); i++)
+            for (int i = 1; i <= listaFlauti.velicina(); i++)
             {
-                listaFlauti.read(i, f);
+                listaFlauti.izlistaj(i, f);
                 f.ispisFlaute();
             }
         }

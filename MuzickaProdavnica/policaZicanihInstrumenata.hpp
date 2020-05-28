@@ -1,50 +1,51 @@
 #ifndef POLICAZICANIHINSTRUMENATA_HPP_INCLUDED
 #define POLICAZICANIHINSTRUMENATA_HPP_INCLUDED
 
-#include "list.hpp"
+#include "lista.hpp"
+
 class PolicaZicanih
 {
 private:
-    List<Gitara> listaGitara;
-    List<Harfa> listaHarfi;
-    List<Ukulele> listaUkulelea;
+    Lista<Gitara> listaGitara;
+    Lista<Harfa> listaHarfi;
+    Lista<Ukulele> listaUkulelea;
 public:
-    void setListuGitara(List<Gitara> gg)
+    void setListuGitara(Lista<Gitara> gg)
     {
         listaGitara = gg;
     }
-    void setListuHarfi(List<Harfa> hh)
+    void setListuHarfi(Lista<Harfa> hh)
     {
         listaHarfi = hh;
     }
-    void setListuUkulelea(List<Ukulele> uu)
+    void setListuUkulelea(Lista<Ukulele> uu)
     {
         listaUkulelea = uu;
     }
 
-    List<Gitara> getListuGitara()const{return listaGitara;}
-    List<Harfa> getListuHarfi()const{return listaHarfi;}
-    List<Ukulele> getListuUkulelea()const{return listaUkulelea;}
+    Lista<Gitara> getListuGitara()const{return listaGitara;}
+    Lista<Harfa> getListuHarfi()const{return listaHarfi;}
+    Lista<Ukulele> getListuUkulelea()const{return listaUkulelea;}
 
     PolicaZicanih& operator+=(Gitara& git)
     {
-        listaGitara.add(listaGitara.size()+1, git);
+        listaGitara.dodajElement(listaGitara.velicina()+1, git);
         return *this;
     }
     PolicaZicanih& operator+=(Harfa& harf)
     {
-        listaHarfi.add(listaHarfi.size()+1, harf);
+        listaHarfi.dodajElement(listaHarfi.velicina()+1, harf);
         return *this;
     }
     PolicaZicanih& operator+=(Ukulele& ukul)
     {
-        listaUkulelea.add(listaUkulelea.size()+1, ukul);
+        listaUkulelea.dodajElement(listaUkulelea.velicina()+1, ukul);
         return *this;
     }
 
     void ispisGitara()
     {
-        if(listaGitara.size() == 0)
+        if(listaGitara.velicina() == 0)
         {
             cout<<"-->Nema gitara u prodavnici"<<endl;
         }
@@ -53,16 +54,16 @@ public:
             Gitara g;
             cout<<"Gitare :"<<endl;
 
-            for (int i = 1; i <= listaGitara.size(); i++)
+            for (int i = 1; i <= listaGitara.velicina(); i++)
             {
-                listaGitara.read(i, g);
+                listaGitara.izlistaj(i, g);
                 g.ispisGitare();
             }
         }
     }
     void ispisHarfi()
     {
-        if(listaHarfi.size() == 0)
+        if(listaHarfi.velicina() == 0)
         {
             cout<<"-->Nema harfi u prodavnici"<<endl;
         }
@@ -71,16 +72,16 @@ public:
             Harfa h;
             cout<<"Harfe :"<<endl;
 
-            for (int i = 1; i <= listaHarfi.size(); i++)
+            for (int i = 1; i <= listaHarfi.velicina(); i++)
             {
-                listaHarfi.read(i, h);
+                listaHarfi.izlistaj(i, h);
                 h.ispisHarfe();
             }
         }
     }
     void ispisUkulelea()
     {
-        if(listaUkulelea.size() == 0)
+        if(listaUkulelea.velicina() == 0)
         {
             cout<<"-->Nema ukulelea u prodavnici"<<endl;
         }
@@ -89,9 +90,9 @@ public:
             Ukulele u;
             cout<<"Ukulelei :"<<endl;
 
-            for (int i = 1; i <= listaUkulelea.size(); i++)
+            for (int i = 1; i <= listaUkulelea.velicina(); i++)
             {
-                listaUkulelea.read(i, u);
+                listaUkulelea.izlistaj(i, u);
                 u.ispisUkulelea();
             }
         }

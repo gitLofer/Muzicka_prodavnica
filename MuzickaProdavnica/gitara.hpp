@@ -2,9 +2,6 @@
 #define GITARA_HPP_INCLUDED
 
 #include "zicaniInstrument.hpp"
-enum gitaraVrsta {klasicnaGitara, akusticnaGitara, elektroAkusticnaGitara, elektricnaGitara, basGitara};
-
-
 class Gitara : public ZicaniInstrument
 {
 private:
@@ -12,10 +9,10 @@ private:
 public:
 
     int gitaraID;
-    
+
     Gitara()
     {
-        
+
         cena = 9500.00;
         ocena = 9.9;
         proizvodjac = yamaha;
@@ -26,7 +23,7 @@ public:
     }
     Gitara( float cc, float oo, proizvodjaci pp, int broj, float duzina, zicaVrsta vrs, gitaraVrsta git)
     {
-        
+
         cena = cc;
         ocena = oo;
         proizvodjac = pp;
@@ -79,7 +76,7 @@ public:
         ispisZicanogInstrumenta();
         cout<<"Vrsta gitare: "<<getVrstaGitare()<<endl;
     }
-    
+
     void unosGitare(){
         int br;
         cout<<"ID: ";

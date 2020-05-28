@@ -5,7 +5,8 @@
 
 enum tipGudala {NEMACKI, FRANCUSKI};
 
-class GudackiInstrument : Instrument {
+class GudackiInstrument : Instrument
+{
 protected:
     tipGudala gudaloTip;
     int brojZica;
@@ -15,13 +16,11 @@ public:
     GudackiInstrument() : Instrument() {
         gudaloTip = NEMACKI;
         brojZica = 4;
-        vrstaZica = najlon;
         isElectric = false;
     }
-    GudackiInstrument(tipGudala tipG, int brojZ, zicaVrsta typeOfString, bool electric,DinString na, float c, float o, proizvodjaci pp, DinString b, DinString tim) : Instrument(na, c, o, pp, b, tim) {
+    GudackiInstrument( tipGudala tipG, int brojZ,bool electric, float c, float o, proizvodjaci pp) : Instrument( c, o, pp) {
         gudaloTip = tipG;
         brojZica = brojZ;
-        vrstaZica = typeOfString;
         isElectric = electric;
     }
     GudackiInstrument(const GudackiInstrument &gi) : Instrument((Instrument)gi) {
@@ -31,13 +30,43 @@ public:
 
     tipGudala getGudalo () const {return gudaloTip;}
     int getZicaBroj () const {return brojZica;}
-    zicaVrsta getZicaVrsta () const {return vrstaZica;}
     bool getElectric () const {return isElectric;}
 
     void setGudalo (tipGudala g) {gudaloTip = g;}
     void setZicaBroj (int b) {brojZica = b;}
-    void setZicaVrsta (zicaVrsta zv) {vrstaZica = zv;}
     void setElectric (bool e) {isElectric = e;}
+
+    void ispisGudackogInstrumenta()
+    {
+        ispisInstrumenta();
+        cout<<"Tip gudala: "<<getGudalo()<<endl;
+        cout<<"Broj zica: "<<getZicaBroj()<<endl;
+        cout<<"Elektricna: "<<getElectric()<<endl;
+    }
+
+    void unosGudackogInstrumenta()
+    {
+        int br;
+        unosInstrumenta();
+        cout<<"Tip gudala[1-Francuski/2-Nemacki]: ";
+        cin>>br;
+        fflush(stdin);
+        switch(br)
+        {
+        case 1:
+            gudaloTip = FRANCUSKI;
+            break;
+        case 2:
+            gudaloTip = NEMACKI;
+            break;
+        }
+        cout<<"Broj zica: ";
+        cin>>brojZica;
+        fflush(stdin);
+        cout<<"Elektricna: ";
+        cin>>isElectric;
+        fflush(stdin);
+     }
 };
 
 #endif // GUDACKIINSTRUMENT_H_INCLUDED

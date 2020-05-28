@@ -22,10 +22,13 @@ using std::ios;
 #include "instrument.hpp"
 #include "zicaniInstrument.hpp"
 #include "udarackiInstrument.hpp"
+#include "gudackiInstrument.h"
+#include "duvackiinstrument.hpp"
 #include "bubanj.hpp"
 #include "cinele.hpp"
 #include "daire.hpp"
 #include "gitara.hpp"
+#include "horna.hpp"
 #include "harfa.hpp"
 #include "kastanjete.hpp"
 #include "metalofon.hpp"
@@ -38,6 +41,12 @@ using std::ios;
 #include "mikser.h"
 #include "policaZicanihInstrumenata.hpp"
 #include "policaUdarackihInstrumenata.hpp"
+#include "policaDuvackihInstrumenata.hpp"
+#include "datum.hpp"
+#include "trajanje.hpp"
+#include "zvucnaKartica.hpp"
+#include "zvucnaKutija.hpp"
+#include "tuba.hpp"
 
 using namespace std;
 

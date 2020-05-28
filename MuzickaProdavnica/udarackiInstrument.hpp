@@ -1,42 +1,37 @@
 #ifndef UDARACKIINSTRUMENT_HPP_INCLUDED
 #define UDARACKIINSTRUMENT_HPP_INCLUDED
 
+#include "instrument.hpp"
+
 class UdarackiInstrument : public Instrument
 {
 protected:
     udarackiVisinaTona ton;
 public:
+    /// Constructors
     UdarackiInstrument()
     {
-        naziv = "Bubanj";
         cena = 5000.00;
         ocena = 10.0;
         proizvodjac = yamaha;
-        boja = "CRVENA";
-        timbre = "round";
         ton = neodredjena;
     }
-    UdarackiInstrument(DinString naz, float cc, float oo, proizvodjaci pp, DinString bb, DinString tt, udarackiVisinaTona visina)
+    UdarackiInstrument(float cc, float oo, proizvodjaci pp, udarackiVisinaTona visina)
     {
-        naziv = naz;
         cena = cc;
         ocena = oo;
         proizvodjac = pp;
-        boja = bb;
-        timbre = tt;
         ton = visina;
     }
     UdarackiInstrument(const UdarackiInstrument &u)
     {
-        naziv = u.naziv;
         cena = u.cena;
         ocena = u.ocena;
         proizvodjac = u.proizvodjac;
-        boja = u.boja;
-        timbre = u.timbre;
         ton = u.ton;
     }
 
+    /// Functions
     void setVisinaTona(udarackiVisinaTona vis){ton = vis;}
 
     string getVisinaTona()const
@@ -57,8 +52,26 @@ public:
 
     void ispisUdarackogInstrumenta()
     {
-        Instrument :: ispisInstrumenta();
+        ispisInstrumenta();
         cout<<"Visina tona: "<<getVisinaTona()<<endl;
+    }
+
+    void unosUdarackogInstrumenta()
+    {
+        int br;
+        unosInstrumenta();
+        cout<<"Visina tona[1-Odredjena/2-Neodredjena]: ";
+        cin>>br;
+        fflush(stdin);
+        switch(br)
+        {
+        case 1:
+            ton = odredjena;
+            break;
+        case 2:
+            ton = neodredjena;
+            break;
+        }
     }
 
 };
