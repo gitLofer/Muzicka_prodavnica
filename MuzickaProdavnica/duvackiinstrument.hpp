@@ -1,48 +1,75 @@
 #ifndef DUVACKIINSTRUMENT_HPP_INCLUDED
 #define DUVACKIINSTRUMENT_HPP_INCLUDED
 
-class Duvackiinstrument: public Instrument{
+#include "instrument.hpp"
+enum duvackiVrsta {limeni, drveni};
+
+class DuvackiInstrument: public Instrument{
 protected:
     duvackiVrsta vrsta;
-
 public:
-    Duvackiinstrument(){
-        naziv="Flauta";
+    DuvackiInstrument()
+    {
         cena=1000.00;
         ocena=9.34;
         proizvodjac=yamaha;
-        boja="Srebrna";
-        timbre="sharp";
         vrsta=drveni;
     }
 
-    Duvackiinstrument(DinString n, float c, float o, proizvodjaci p, DinString b, DinString t, duvackiVrsta v){
-        naziv=n;
+    DuvackiInstrument( float c, float o, proizvodjaci p, duvackiVrsta v)
+    {
         cena=c;
         ocena=o;
         proizvodjac=p;
-        boja=b;
-        timbre=t;
         vrsta=v;
     }
 
-    Duvackiinstrument(const Duvackiinstrument &di){
-        naziv=di.naziv;
+    DuvackiInstrument(const DuvackiInstrument &di)
+    {
         cena=di.cena;
         ocena=di.ocena;
         proizvodjac=di.proizvodjac;
-        boja=di.boja;
-        timbre=di.timbre;
         vrsta=di.vrsta;
     }
 
-    duvackiVrsta getVrsta(){return vrsta; }
+    string getVrsta()const
+    {
+    switch(vrsta)
+    {
+    case limeni:
+        return "Limeni";
+        break;
+    case drveni:
+        return "Drveni";
+        break;
+    }
+    }
     void setVrsta(duvackiVrsta v){vrsta=v; }
 
-    void ispisDuvackogInstrumenta(){
-        Instrument :: ispisInstrumenta();
+    void ispisDuvackogInstrumenta()
+    {
+        ispisInstrumenta();
         cout<<"Vrsta :"<<getVrsta()<<endl;
+    }
+
+    void unosDuvackogInstrumenta()
+    {
+        int br;
+        unosInstrumenta();
+        cout<<"Vrsta duvackog[1-Limeni/2-Drveni]: ";
+        cin>>br;
+        fflush(stdin);
+        switch(br)
+        {
+        case 1:
+            vrsta = limeni;
+            break;
+        case 2:
+            vrsta = drveni;
+            break;
+        }
+
     }
 };
 
-#endif // DUVACKIINSTRUMENT_HPP_INCLUDED
+#endif
