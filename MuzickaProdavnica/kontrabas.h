@@ -1,7 +1,7 @@
-#ifndef KONTRABAS_H_INCLUDED
-#define KONTRABAS_H_INCLUDED
+#ifndef KONTRABAS_HPP_INCLUDED
+#define KONTRABAS_HPP_INCLUDED
 
-#include "gudackiInstrument.h"
+#include "gudackiInstrument.hpp"
 
 class Kontrabas : public GudackiInstrument
 {
@@ -187,4 +187,4 @@ void obrisiUFajluKontrabas(int n)
 	cin.get();
 }
 
-#endif // KONTRABAS_H_INCLUDED
+#endif 
