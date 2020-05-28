@@ -93,7 +93,7 @@ void dodajUFajlRazglasniSistemi()
 	RazglasniSistemi r;
 	ofstream outFile;
 	outFile.open("RAZGLASNISISTEM.dat",ios::binary|ios::app);
-	r.ispisiRazglasniSistem();
+	r.unesiRazglasniSistem();
 	outFile.write(reinterpret_cast<char *> (&r), sizeof(RazglasniSistemi));
 	outFile.close();
     	cout<<"\n\nRazglasni sistem dodat u fajl!";
