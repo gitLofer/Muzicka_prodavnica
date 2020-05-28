@@ -1,54 +1,156 @@
 #ifndef DAIRE_HPP_INCLUDED
 #define DAIRE_HPP_INCLUDED
 
+#include "udarackiInstrument.hpp"
+
 class Daire : public UdarackiInstrument
 {
 private:
-    DinString obrucMaterijal;
+    char obrucMaterijal[20];
 public:
+
+    int daireID;
+
     Daire()
     {
-        naziv = "Daire";
         cena = 700.00;
         ocena = 10.0;
         proizvodjac = yamaha;
-        boja = "SVETLO BRAON";
-        timbre = "sharp";
-        ton = neodredjena;
-        obrucMaterijal = "DRVENI";
+        ton = neodredjena;;
     }
-    Daire(DinString naz, float cc, float oo, proizvodjaci pp, DinString bb, DinString tt, udarackiVisinaTona visina, DinString materijal)
+    Daire(float cc, float oo, proizvodjaci pp, udarackiVisinaTona visina)
     {
-        naziv = naz;
         cena = cc;
         ocena = oo;
         proizvodjac = pp;
-        boja = bb;
-        timbre = tt;
         ton = visina;
-        obrucMaterijal = materijal;
     }
     Daire(const Daire &d)
     {
-        naziv = d.naziv;
         cena = d.cena;
         ocena = d.ocena;
         proizvodjac = d.proizvodjac;
-        boja = d.boja;
-        timbre = d.timbre;
         ton = d.ton;
-        obrucMaterijal = d.obrucMaterijal;
     }
 
-    void setMaterijalObruca(DinString obruc){obrucMaterijal = obruc;}
+    //void setMaterijalObruca(string obruc){obrucMaterijal = obruc;}
 
-    DinString getMaterijalObruca()const{return obrucMaterijal;}
+    const char* getMaterijalObruca()const{return obrucMaterijal;}
+    int getDaireID()const;
 
     void ispisDaira()
     {
-        UdarackiInstrument :: ispisUdarackogInstrumenta();
+        cout<<"ID: "<<getDaireID()<<endl;
+        ispisUdarackogInstrumenta();
         cout<<"Materijal obruca: "<<getMaterijalObruca()<<endl;
+    }
+
+    void unosDaira()
+    {
+        cout<<"ID: ";
+        cin>>daireID;
+        fflush(stdin);
+        unosUdarackogInstrumenta();
+        cout<<"Materijal obruca: ";
+        cin>>obrucMaterijal;
+        fflush(stdin);
     }
 };
 
-#endif // DAIRE_HPP_INCLUDED
+int Daire::getDaireID()const {return daireID;}
+
+void dodajUFajlDaire()
+{
+	Daire d;
+	ofstream outFile;
+	outFile.open("DAIRE.dat",ios::binary|ios::app);
+	d.unosDaira();
+	outFile.write(reinterpret_cast<char *> (&d), sizeof(Daire));
+	outFile.close();
+    	cout<<"\n\nDaire dodate u fajl!";
+	cin.ignore();
+	cin.get();
+}
+void ispisiFajlDaire()
+{
+	Daire d;
+	ifstream inFile;
+	inFile.open("DAIRE.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"Greska! Ne moze se otvoriti fajl!";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+	cout<<"\n\n\n\t\tSVE DAIRE U FAJLU\n\n";
+	while(inFile.read(reinterpret_cast<char *> (&d), sizeof(Daire)))
+	{
+	    d.ispisDaira();
+		cout<<"\n\n************************************\n";
+	}
+	inFile.close();
+	cin.ignore();
+	cin.get();
+}
+
+void potraziUFajluDaire(int n)
+{
+	Daire d;
+	ifstream inFile;
+	inFile.open("DAIRE.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"Greska! Ne moze se otvoriti fajl!";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+	bool flag=false;
+	while(inFile.read(reinterpret_cast<char *> (&d), sizeof(Daire)))
+	{
+		if(d.getDaireID()==n)
+		{
+	  		 d.ispisDaira();
+			 flag=true;
+		}
+	}
+	inFile.close();
+	if(flag==false)
+		cout<<"\n\nDaire ne postoje!"<<endl;
+	cin.ignore();
+	cin.get();
+}
+
+void obrisiUFajluDaire(int n)
+{
+	Daire d;
+	ifstream inFile;
+	inFile.open("DAIRE.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"Greska! Ne moze se otvoriti fajl!";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+	ofstream outFile;
+	outFile.open("TempDaire.dat",ios::out);
+	inFile.seekg(0,ios::beg);
+	while(inFile.read(reinterpret_cast<char *> (&d), sizeof(Daire)))
+	{
+		if(d.getDaireID()!=n)
+		{
+			outFile.write(reinterpret_cast<char *> (&d), sizeof(Daire));
+		}
+	}
+	outFile.close();
+	inFile.close();
+	remove("DAIRE.dat");
+	rename("TempDaire.dat","DAIRE.dat");
+	cout<<"\n\n\tDaire obrisane!";
+	cin.ignore();
+	cin.get();
+}
+
+#endif
