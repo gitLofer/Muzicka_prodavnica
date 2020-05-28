@@ -1,34 +1,33 @@
 #ifndef HARFA_HPP_INCLUDED
 #define HARFA_HPP_INCLUDED
 
+#include "zicaniInstrument.hpp"
+enum harfaVrsta {pedala, poluga};
+
 class Harfa : public ZicaniInstrument
 {
 private:
     bool elektricna;
     harfaVrsta vrstaHarfe;
 public:
+
+    int harfaID;
     Harfa()
     {
-        naziv = "Harfa";
         cena = 20590.00;
         ocena = 7.9;
         proizvodjac = yamaha;
-        boja = "ZLATNA";
-        timbre = "round";
         brojZica = 48;
         duzinaZice = 2;
         vrstaZica = celik;
         elektricna = false;
         vrstaHarfe = poluga;
     }
-    Harfa(DinString naz, float cc, float oo, proizvodjaci pp, DinString bb, DinString tt, int broj, float duzina, zicaVrsta vrs, bool elektro, harfaVrsta harf )
+    Harfa( float cc, float oo, proizvodjaci pp, int broj, float duzina, zicaVrsta vrs, bool elektro, harfaVrsta harf )
     {
-        naziv = naz;
         cena = cc;
         ocena = oo;
         proizvodjac = pp;
-        boja = bb;
-        timbre = tt;
         brojZica = broj;
         duzinaZice = duzina;
         vrstaZica = vrs;
@@ -37,12 +36,10 @@ public:
     }
     Harfa(const Harfa &h)
     {
-        naziv = h.naziv;
+       
         cena = h.cena;
         ocena = h.ocena;
         proizvodjac = h.proizvodjac;
-        boja = h.boja;
-        timbre = h.timbre;
         brojZica = h.brojZica;
         duzinaZice = h.duzinaZice;
         vrstaZica = h.vrstaZica;
@@ -53,6 +50,7 @@ public:
     void setElektricna(bool elek){elektricna = elek;}
     void setVrstaHarfe(harfaVrsta ha){vrstaHarfe = ha;}
 
+    int getHarfaID()const;
     string getElektricna()const
     {
         if(elektricna == false)
@@ -82,9 +80,130 @@ public:
 
     void ispisHarfe()
     {
-        ZicaniInstrument :: ispisZicanogInstrumenta();
+        cout<<"ID: "<<getHarfaID()<<endl;
+        ispisZicanogInstrumenta();
         cout<<"Elektricna: "<<getElektricna()<<endl;
         cout<<"Vrsta harfe: "<<getVrstaHarfe()<<endl;
     }
+    
+    void unosHarfe()
+    {
+        int br;
+        cout<<"ID: ";
+        cin>>harfaID;
+        unosZicanogInstrumenta();
+        cout<<"Elektricna: ";
+        cin>>elektricna;
+        fflush(stdin);
+        cout<<"Vrsta harfe[1-Pedala/2-Poluga]: ";
+        cin>>br;
+        fflush(stdin);
+        switch(br)
+        {
+        case 1:
+            vrstaHarfe = pedala;
+            break;
+        case 2:
+            vrstaHarfe = poluga;
+            break;
+        }
+    }
 };
+
+
+
+int Harfa::getHarfaID()const {return harfaID;}
+
+void dodajUFajlHarfa(){
+	Harfa h;
+	ofstream outFile;
+	outFile.open("HARFA.dat",ios::binary|ios::app);
+	h.unosHarfe();
+	outFile.write(reinterpret_cast<char *> (&h), sizeof(Harfa));
+	outFile.close();
+    	cout<<"\n\nHarfa dodata u fajl!";
+	cin.ignore();
+	cin.get();
+}
+
+void ispisiFajlHarfa(){
+	Harfa h;
+	ifstream inFile;
+	inFile.open("HARFA.dat",ios::binary);
+    
+	if(!inFile){
+		cout<<"Greska! Ne moze se otvoriti fajl!";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+	cout<<"\n\n\n\t\tSVE HARFE U FAJLU\n\n";
+    
+	while(inFile.read(reinterpret_cast<char *> (&h), sizeof(Harfa))){
+	    h.ispisHarfe();
+		cout<<"\n\n************************************\n";
+	}
+	inFile.close();
+	cin.ignore();
+	cin.get();
+}
+
+void potraziUFajluHarfa(int n){
+	Harfa h;
+	ifstream inFile;
+	inFile.open("HARFA.dat",ios::binary);
+    
+	if(!inFile){
+		cout<<"Greska! Ne moze se otvoriti fajl!";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+	bool flag=false;
+    
+	while(inFile.read(reinterpret_cast<char *> (&h), sizeof(Harfa))){
+		if(h.getHarfaID()==n){
+	  		h.ispisHarfe();
+			 flag=true;
+		}
+	}
+	inFile.close();
+	if(flag==false)
+		cout<<"\n\nHarfa ne postoji!"<<endl;
+	cin.ignore();
+	cin.get();
+}
+
+void obrisiUFajluHarfa(int n){
+	Harfa h;
+	ifstream inFile;
+	inFile.open("HARFA.dat",ios::binary);
+    
+	if(!inFile){
+		cout<<"Greska! Ne moze se otvoriti fajl!";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+    
+	ofstream outFile;
+	outFile.open("TempHarfa.dat",ios::out);
+	inFile.seekg(0,ios::beg);
+	while(inFile.read(reinterpret_cast<char *> (&h), sizeof(Harfa))){
+		if(h.getHarfaID()!=n){
+			outFile.write(reinterpret_cast<char *> (&h), sizeof(Harfa));
+		}
+	}
+    
+	outFile.close();
+	inFile.close();
+	remove("HARFA.dat");
+	rename("TempHarfa.dat","HARFA.dat");
+	cout<<"\n\n\tHarfa obrisana!";
+	cin.ignore();
+	cin.get();
+}
+
+
+
 #endif // HARFA_HPP_INCLUDED
