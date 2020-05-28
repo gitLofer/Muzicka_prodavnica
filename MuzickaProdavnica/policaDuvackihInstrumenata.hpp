@@ -91,6 +91,13 @@ public:
         listaFlauti.dodajElement(listaFlauti.velicina()+1, flat);
         return *this;
     }
+    
+     PolicaDuvackih& operator+=(Saksofon& s)
+    {
+        listaSaksofona.dodajElement(listaSaksofona.velicina()+1, s);
+        return *this;
+    }
+
 
     void ispisTubi()
     {
