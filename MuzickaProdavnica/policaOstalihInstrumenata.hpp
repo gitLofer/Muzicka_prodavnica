@@ -23,6 +23,17 @@ public:
     Lista<Klavir> getlistaKlavira()const{return listaKlavira;}
     Lista<Harmonika> getListaHarmonika()const{return listaHarmonika;}
 
+    PolicaOstalihInstrumenata& operator+=(Klavir& k)
+    {
+        listaKlavira.dodajElement(listaKlavira.velicina()+1, k);
+        return *this;
+    }
+    PolicaOstalihInstrumenata& operator+=(Harmonika& h)
+    {
+        listaHarmonika.dodajElement(listaHarmonika.velicina()+1, h);
+        return *this;
+    }
+    
     void ispisKlaviraa()
     {
         if(listaKlavira.velicina() == 0)
