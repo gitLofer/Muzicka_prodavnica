@@ -1,7 +1,7 @@
-#ifndef VIOLONCELO_H_INCLUDED
-#define VIOLONCELO_H_INCLUDED
+#ifndef VIOLONCELO_HPP_INCLUDED
+#define VIOLONCELO_HPP_INCLUDED
 
-#include "gudackiInstrument.h"
+#include "gudackiInstrument.hpp"
 
 class Violoncelo : GudackiInstrument {
 private:
